@@ -1,23 +1,63 @@
+/*VALUES*/
+let previousOperation = [];
+let currentOperation = [];
+let lastOperationDisplay = document.getElementById("last-operation")
+let currentOperationDisplay = document.getElementById("current-operation")
+
+/*USING OPERATORS*/
+let operators = Array.from(document.getElementsByClassName("operator"));
+operators.forEach((operator) => {
+    operator.addEventListener("click", () => {
+        currentOperation.push(operator.textContent);
+        lastOperationDisplay.textContent = `${currentOperationDisplay.textContent} ${operator.textContent}`;
+        currentOperation = [];
+        currentOperationDisplay.textContent = "";
+    });
+});
+
+/*CALCULATING*/
+let equal = document.getElementById("equal");
+equal.addEventListener("click", () => {
+    let lastElement = previousOperation.length - 1;
+    if (previousOperation[lastElement] === "+" || 
+    previousOperation[lastElement] === "-" || 
+    previousOperation[lastElement] === "x" || 
+    previousOperation[lastElement] === "÷") {
+        lastOperationDisplay.textContent += `${currentOperationDisplay.textContent} ${operator.textContent}`;
+        currentOperation = [];
+        currentOperationDisplay.textContent = operate(operator.textContent);
+    }
+});
+
+/*DISPLAYING NUMBERS*/
+let numbers = Array.from(document.querySelectorAll(".number"));
+numbers.forEach((number) => {
+    number.addEventListener("click", () => {
+        currentOperationDisplay.textContent += number.textContent;
+        currentOperation.push(number.textContent);
+    });
+});
+
 /*OPERATE*/
 function operate(symbol){
     switch(true) {
         case symbol === "+":
-            add(arguments[1], arguments[2]);
+            result = add(arguments[1], arguments[2]);
             break;
         case symbol === "-":
-            subtract(arguments[1], arguments[2]);
+            result = subtract(arguments[1], arguments[2]);
             break; 
         case symbol === "÷":
-            divide(arguments[1], arguments[2]);
+            result = divide(arguments[1], arguments[2]);
             break; 
         case symbol === "x":
-            multiply(arguments[1], arguments[2]);
+            result = multiply(arguments[1], arguments[2]);
             break;    
         case symbol === "^":
-            power(arguments[1], arguments[2]);
+            result = power(arguments[1], arguments[2]);
             break;
         case symbol === "!":
-            factorial(arguments[1]);
+            result = factorial(arguments[1]);
             break;
     }
 }
@@ -33,7 +73,11 @@ function multiply(a, b) {
     return +a * +b;    
 };
 function divide(a, b) {
-    return +a / +b;
+    if (b !== 0){
+        return +a / +b;
+    } else {
+        return "Math ERROR";
+    }
 }
 
 /*FUNCTIONS*/

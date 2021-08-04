@@ -1,19 +1,19 @@
 html {
     width: 100vw;
     height: 100vh;
-    background-color: grey;
     display: grid;
+    background-image: url("prism.png");
 }
 
 body {
-    width: 32.5vw;
-    height: 80vh;
+    width: 30vw;
+    height: 85vh;
     box-sizing: border-box;
     display: grid;
     align-self: center;
     justify-self: center;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(7, 1fr);
+    grid-template-rows: 2fr repeat(6, 1fr);
     grid-template-areas: 
     "display display display display"
     "clear clear delete delete"
@@ -23,17 +23,36 @@ body {
     "three two one addition"
     "decimal-point nil equal addition";
 
-    border: solid 10px rgb(93, 93, 93);
+    background-color: gray;
+    column-gap: 10px;
+    row-gap: 10px;
+    border: solid 10px gray;
     border-radius: 4px;
 }
 
 #display {
     background-color: white;
     display: grid;
+    grid-template-rows: 1fr 3fr;
     grid-area: display;
     width: 100%;
     height: auto;
     border-radius: 5px;
+}
+#current-operation {
+    font-size: 20px;
+    display: grid;
+    align-content: center;
+    justify-content: start;
+    box-sizing: border-box;
+    padding: 5px;
+}
+#last-operation {
+    display: grid;
+    align-content: center;
+    justify-content: start;
+    box-sizing: border-box;
+    padding: 5px;
 }
 
 /*ERASERS*/
