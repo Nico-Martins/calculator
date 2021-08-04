@@ -16,12 +16,15 @@ body {
     grid-template-rows: repeat(7, 1fr);
     grid-template-areas: 
     "display display display display"
-    "delete delete clear clear"
-    "root power factorial logarithm"
-    "nine eight seven division"
-    "six five four multiplication"
-    "three two one subtraction"
+    "clear clear delete delete"
+    "factorial sign power division"
+    "nine eight seven multiplication"
+    "six five four subtraction"
+    "three two one addition"
     "decimal-point nil equal addition";
+
+    border: solid 10px rgb(93, 93, 93);
+    border-radius: 4px;
 }
 
 #display {
@@ -30,6 +33,7 @@ body {
     grid-area: display;
     width: 100%;
     height: auto;
+    border-radius: 5px;
 }
 
 /*ERASERS*/
@@ -41,17 +45,14 @@ body {
 }
 
 /*FUNCTIONS*/
-#root {
-    grid-area: root;
-}
 #power {
     grid-area: power;
 }
+#sign {
+    grid-area: sign;
+}
 #factorial {
     grid-area: factorial;
-}
-#logarithm {
-    grid-area: logarithm;
 }
 
 /*KEYS*/
