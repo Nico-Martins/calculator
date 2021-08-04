@@ -1,0 +1,112 @@
+html {
+    width: 100vw;
+    height: 100vh;
+    background-color: grey;
+    display: grid;
+}
+
+body {
+    width: 32.5vw;
+    height: 80vh;
+    box-sizing: border-box;
+    display: grid;
+    align-self: center;
+    justify-self: center;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(7, 1fr);
+    grid-template-areas: 
+    "display display display display"
+    "delete delete clear clear"
+    "root power factorial logarithm"
+    "nine eight seven division"
+    "six five four multiplication"
+    "three two one subtraction"
+    "decimal-point nil equal addition";
+}
+
+#display {
+    background-color: white;
+    display: grid;
+    grid-area: display;
+    width: 100%;
+    height: auto;
+}
+
+/*ERASERS*/
+#delete {
+    grid-area: delete;
+}
+#clear {
+    grid-area: clear;
+}
+
+/*FUNCTIONS*/
+#root {
+    grid-area: root;
+}
+#power {
+    grid-area: power;
+}
+#factorial {
+    grid-area: factorial;
+}
+#logarithm {
+    grid-area: logarithm;
+}
+
+/*KEYS*/
+#nine {
+    grid-area: nine;
+}
+#eight {
+    grid-area: eight;
+}
+#seven {
+    grid-area: seven;  
+}
+#six {
+    grid-area: six;
+}
+#five {
+    grid-area: five;
+}
+#four {
+    grid-area: four;
+}
+#three {
+    grid-area: three;
+}
+#two {
+    grid-area: two;
+}
+#one {
+    grid-area: one;  
+}
+#nil {
+    grid-area: nil;
+}
+#decimal-point {
+    grid-area: decimal-point;
+}
+#equal {
+    grid-area: equal;
+}
+
+/*OPERATORS*/
+#division {
+    grid-area: division;
+}
+#multiplication {
+    grid-area: multiplication;
+}
+#subtraction {
+    grid-area: subtraction;
+}
+#addition {
+    grid-area: addition;
+}
+
+/*CLASSES*/
+.button {
+    font-size: 22.5px;
+}
