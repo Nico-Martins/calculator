@@ -47,7 +47,7 @@ body {
     box-sizing: border-box;
     padding: 5px;
 }
-#last-operation {
+#previous-operation {
     display: grid;
     align-content: center;
     justify-content: start;

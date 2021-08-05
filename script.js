@@ -1,32 +1,54 @@
 /*VALUES*/
 let previousOperation = [];
 let currentOperation = [];
-let lastOperationDisplay = document.getElementById("last-operation")
+let previousOperationDisplay = document.getElementById("previous-operation")
 let currentOperationDisplay = document.getElementById("current-operation")
 
-/*USING OPERATORS*/
+/*WRITING OPERATIONS*/
 let operators = Array.from(document.getElementsByClassName("operator"));
 operators.forEach((operator) => {
     operator.addEventListener("click", () => {
+        currentOperation.push(" ")
         currentOperation.push(operator.textContent);
-        lastOperationDisplay.textContent = `${currentOperationDisplay.textContent} ${operator.textContent}`;
-        currentOperation = [];
+
+        previousOperationDisplay.textContent = `${currentOperationDisplay.textContent} ${operator.textContent}`;
         currentOperationDisplay.textContent = "";
+
+        previousOperation = currentOperation;
+        currentOperation = [];
     });
 });
 
 /*CALCULATING*/
 let equal = document.getElementById("equal");
 equal.addEventListener("click", () => {
-    let lastElement = previousOperation.length - 1;
-    if (previousOperation[lastElement] === "+" || 
-    previousOperation[lastElement] === "-" || 
-    previousOperation[lastElement] === "x" || 
-    previousOperation[lastElement] === "÷") {
-        lastOperationDisplay.textContent += `${currentOperationDisplay.textContent} ${operator.textContent}`;
-        currentOperation = [];
-        currentOperationDisplay.textContent = operate(operator.textContent);
-    }
+    /*Display*/
+    console.log(`First crrent operation: ${currentOperation}`);
+    console.log(`First previous operation: ${previousOperation}`);
+    currentOperation.push(" ")
+    currentOperation.push(equal.textContent);
+    console.log(`Second crrent operation: ${currentOperation}`);
+
+    previousOperationDisplay.textContent += ` ${currentOperationDisplay.textContent} ${equal.textContent}`;
+
+    let fullOperation = previousOperation.concat([" "], currentOperation);
+    previousOperation = fullOperation;
+    console.log(`Second previous operation: ${previousOperation}`);
+
+    /*Values*/
+    let firstNum = previousOperation.join("").split(" ")[0];
+    let symbol = previousOperation.join("").split(" ")[1];
+    let secondNum = previousOperation.join("").split(" ")[2];
+    console.log(`First number: ${firstNum}`);
+    console.log(`Symbol: ${symbol}`);   
+    console.log(`Second number: ${secondNum}`);
+
+    /*Calculating*/
+    let result = operate(symbol, firstNum, secondNum);
+    console.log(`Result: ${result}`);
+    currentOperation = result;
+    currentOperationDisplay.textContent = result.join("");
+
 });
 
 /*DISPLAYING NUMBERS*/
@@ -40,6 +62,7 @@ numbers.forEach((number) => {
 
 /*OPERATE*/
 function operate(symbol){
+    let result = 0;
     switch(true) {
         case symbol === "+":
             result = add(arguments[1], arguments[2]);
@@ -60,6 +83,7 @@ function operate(symbol){
             result = factorial(arguments[1]);
             break;
     }
+    return Array.from(String(result));
 }
 
 /*OPERATIONS*/
