@@ -51,6 +51,46 @@ equal.addEventListener("click", () => {
 
 });
 
+/*FUNCTIONS*/
+    /*POWER*/
+let powerOf = document.getElementById("power");
+powerOf.addEventListener("click", () => {
+    currentOperation.push(" ")
+    currentOperation.push("^");
+
+    previousOperationDisplay.textContent = `${currentOperationDisplay.textContent} ^`;
+    currentOperationDisplay.textContent = "";
+
+    previousOperation = currentOperation;
+    currentOperation = [];
+});
+    /*SING*/
+let sign = document.getElementById("sign");
+sign.addEventListener("click", () => {
+    if (currentOperation[0] === "-"){
+        currentOperation.shift();
+        currentOperationDisplay.textContent = String(currentOperation.join(""));
+    } else {
+        currentOperation.unshift("-");
+        currentOperationDisplay.textContent = String(currentOperation.join(""));
+    }
+});
+
+    /*FACTORIAL*/
+let factorialOf = document.getElementById("factorial");
+factorialOf.addEventListener("click", () => {
+    currentOperation.push(" ")
+    currentOperation.push("!");
+
+    previousOperationDisplay.textContent = `${currentOperationDisplay.textContent}!`;
+    currentOperationDisplay.textContent = "";
+
+    previousOperation = currentOperation;
+    currentOperation = [];
+
+    equal.click();
+});
+
 /*DISPLAYING NUMBERS*/
 let numbers = Array.from(document.querySelectorAll(".number"));
 numbers.forEach((number) => {
@@ -122,3 +162,19 @@ function factorial(num) {
 function changeSign(num){
     return -(+num)
 }
+
+/*ERASERS*/
+    /*Clear*/
+let clear = document.getElementById("clear");
+clear.addEventListener("click", () =>  {
+    previousOperation = [];
+    previousOperationDisplay.textContent = "";
+    currentOperation = [];
+    currentOperationDisplay.textContent = "";
+});
+    /*Delete*/
+let deleter = document.getElementById("delete");
+deleter.addEventListener("click", () =>  {
+    currentOperation.pop();
+    currentOperationDisplay.textContent = currentOperation.join("");
+});  
